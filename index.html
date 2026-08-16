@@ -1,0 +1,1453 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Myesha Barnes | The Protection Gap Check</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Educational worksheets that estimate a household protection gap. Client preview.">
+</head>
+<body>
+<style>
+/* ============================================================
+   MYESHA BARNES / THE PROTECTION GAP CHECK
+
+   Bright treatment. White is the ground; Combined Insurance's
+   own colours are spent deliberately and sparingly:
+     #003A63  brand navy      headings, primary action
+     #00B8B8  income / teal   the one signature accent
+     #F8991D  accident        moderate exposure only
+     #C60070  critical illness  high exposure only
+     #106BAD  secondary blue
+   (values taken from Combined's live stylesheet, August 2026)
+
+   Type: P052 (Palatino) display, Lato text, both embedded.
+   Structure: top level section tabs, one view at a time.
+   ============================================================ */
+
+@font-face{font-family:"MB Display";src:url(assets/f0.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"MB Display";src:url(assets/f1.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"MB Display";src:url(assets/f2.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"MB Text";src:url(assets/f3.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"MB Text";src:url(assets/f4.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"MB Text";src:url(assets/f5.woff2) format("woff2");font-weight:900;font-style:normal;font-display:swap}
+
+:root{
+  color-scheme:light;
+  --navy:#003A63;
+  --navy-2:#00538F;
+  --teal:#00857F;
+  --teal-ink:#00706B;
+  --teal-br:#00B8B8;
+  --amber:#F8991D;
+  --amber-ink:#8A5000;
+  --magenta:#C60070;
+
+  --white:#FFFFFF;
+  --paper:#FFFFFF;
+  --tint:#F2F7FA;
+  --track:#EDF3F7;
+  --ink:#0D1B26;
+  --ink-2:#42586A;
+  --ink-3:#4E6675;
+  --rule:#E1E9EF;
+  --rule-2:#EEF3F7;
+  --field:#FFFFFF;
+
+  --sh-1:0 1px 2px rgba(13,27,38,.04),0 6px 16px -10px rgba(13,27,38,.14);
+  --sh-2:0 1px 3px rgba(13,27,38,.05),0 18px 40px -20px rgba(13,27,38,.22);
+  --sh-3:0 2px 6px rgba(13,27,38,.06),0 34px 70px -28px rgba(13,27,38,.28);
+
+  --display:"MB Display",Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+  --text:"MB Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --col:1180px;
+}
+
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--text);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;
+  letter-spacing:-.014em;color:var(--ink)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+.wrap{width:100%;max-width:var(--col);margin:0 auto;padding:0 32px}
+@media (max-width:600px){.wrap{padding:0 20px}}
+.eyebrow{font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal-ink);margin:0}
+.figure{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------------- buttons ---------------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;
+  font-family:var(--text);font-weight:700;font-size:15px;padding:14px 26px;border-radius:3px;
+  border:1.5px solid transparent;cursor:pointer;text-decoration:none;
+  transition:transform .18s cubic-bezier(.2,.7,.3,1),background .18s,color .18s,border-color .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:none}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 8px 20px -10px rgba(0,58,99,.7)}
+.btn-primary:hover{background:var(--navy-2);box-shadow:0 14px 28px -10px rgba(0,58,99,.8)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn-line:hover{border-color:var(--navy);color:var(--navy)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ---------------- header ---------------- */
+.hdr{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--white) 88%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+.hdr-top{display:flex;align-items:center;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;
+  background:none;border:0;padding:0;cursor:pointer;font:inherit}
+.brand .mk{width:38px;height:38px;flex:none;border-radius:3px;background:var(--navy);color:#fff;
+  display:grid;place-items:center;font-family:var(--display);font-size:15px;letter-spacing:.03em}
+.brand b{display:block;font-family:var(--display);font-size:18px;font-weight:400;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;line-height:1.2}
+.brand .cred{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.hdr-act{display:flex;align-items:center;gap:14px}
+.hdr-tel{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;
+  color:var(--ink);text-decoration:none;white-space:nowrap}
+.hdr-tel:hover{color:var(--navy)}
+.hdr-tel .ic{color:var(--teal)}
+.hdr .btn{padding:11px 19px;font-size:14px}
+
+/* section tabs */
+.navtabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.navtabs::-webkit-scrollbar{display:none}
+.navtab{appearance:none;background:none;border:0;cursor:pointer;font:inherit;
+  padding:0 2px 15px;margin-right:30px;position:relative;white-space:nowrap;
+  font-size:14.5px;font-weight:400;color:var(--ink-3);transition:color .2s}
+.navtab:last-child{margin-right:0}
+.navtab::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:var(--teal-br);transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(.2,.7,.3,1)}
+.navtab:hover{color:var(--ink)}
+.navtab[aria-selected="true"]{color:var(--navy);font-weight:700}
+.navtab[aria-selected="true"]::after{transform:scaleX(1)}
+@media (max-width:820px){
+  .hdr-top{min-height:62px;gap:12px}
+  .brand .cred{display:none}
+  .navtab{margin-right:22px;font-size:14px}
+}
+@media (max-width:700px){
+  /* the Contact tab already covers this, and the row will not fit */
+  .hdr .btn{display:none}
+}
+@media (max-width:420px){
+  .brand .mk{width:32px;height:32px;font-size:13px}
+  .brand b{font-size:15px;letter-spacing:.04em}
+  .hdr-tel{font-size:13.5px}
+  .navtab{margin-right:18px;font-size:13.5px}
+}
+
+/* ---------------- carrier attribution ----------------
+   Combined's own Canadian English asset, used unaltered on the
+   navy it ships with. Chubb's usage guide forbids recolouring,
+   recreating or resizing below legibility, so it is only ever
+   scaled proportionally and never restyled.
+   ------------------------------------------------------ */
+.carrier{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.carrier .k{margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+.carrier img{width:172px;height:auto;border-radius:3px;display:block}
+.carrier-bar{display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+  padding:26px 0;border-top:1px solid var(--rule)}
+.foot-carrier{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--rule)}
+.foot-carrier img{width:150px;height:auto;border-radius:3px;display:block}
+.foot-carrier p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-3);max-width:62ch}
+@media (max-width:600px){.carrier img{width:150px}}
+
+/* ---------------- preview ownership marker ----------------
+   Shown while CONFIG.previewNotice is set. Clear that value to
+   remove both the badge and the watermark before launch.
+   ----------------------------------------------------------- */
+body.preview::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='420'%20height='260'%3E%3Ctext%20x='10'%20y='150'%20transform='rotate(-28%20210%20130)'%20font-family='Helvetica,Arial,sans-serif'%20font-size='17'%20font-weight='700'%20letter-spacing='1.5'%20fill='%230D1B26'%20fill-opacity='0.045'%3EPROPERTY%20OF%20ANING%20MEDIA%20GROUP%3C/text%3E%3C/svg%3E");background-repeat:repeat;
+}
+body.preview > *:not(.preview-badge){position:relative;z-index:1}
+.preview-badge{
+  position:fixed;left:18px;bottom:18px;z-index:200;display:flex;align-items:center;gap:10px;
+  padding:10px 16px;border-radius:100px;background:var(--ink);color:#fff;
+  font-family:var(--text);font-size:12px;font-weight:700;letter-spacing:.04em;
+  box-shadow:0 6px 22px -8px rgba(13,27,38,.55);max-width:calc(100vw - 36px)}
+.preview-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--teal-br);flex:none}
+.preview-badge b{font-weight:700}
+.preview-badge .sep{opacity:.45;font-weight:400}
+.preview-badge .pv-lbl{color:#fff;opacity:.9;font-weight:400;font-size:12px;letter-spacing:.04em;
+  text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:600px){
+  .preview-badge{left:10px;right:10px;bottom:10px;font-size:11px;padding:9px 13px;justify-content:center}
+}
+@media print{.preview-badge{position:static}}
+
+/* ---------------- campaign mode ----------------
+   One lead magnet, one page, no way to wander off. Set
+   CONFIG.campaign to "income" | "family" | "ci".
+   ------------------------------------------------ */
+body.campaign .navtabs{display:none}
+/* the CTA carries the number on desktop, so the plain tel link would repeat it.
+   Below 700px the CTA is hidden, so the tel link has to stay. */
+@media (min-width:701px){body.campaign .hdr-tel{display:none}}
+body.campaign .hdr-top{min-height:74px}
+body.campaign .wtabs{display:none}
+body.campaign .panel{border-radius:6px}
+body.campaign .wpanel{padding-top:36px}
+.camp-hero{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);gap:52px;align-items:center;
+  padding:0 0 8px}
+@media (max-width:940px){.camp-hero{grid-template-columns:1fr;gap:30px}}
+.camp-hero h1{font-size:clamp(32px,4.6vw,56px);line-height:1.05;margin:18px 0 0}
+.camp-hero h1 em{font-style:italic;color:var(--navy)}
+.camp-hero .sub{font-size:clamp(16.5px,1.5vw,19px);line-height:1.6;color:var(--ink-2);
+  max-width:50ch;margin:22px 0 0}
+.camp-hero figure img{width:100%;max-width:360px;margin:0 auto}
+.camp-pts{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.camp-pts li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:var(--ink-2)}
+.camp-pts .tick{flex:none;width:19px;height:19px;border-radius:50%;background:var(--tint);
+  color:var(--teal-ink);display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:3px}
+.camp-about{margin-top:56px;padding-top:40px;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:start;max-width:78ch}
+@media (max-width:600px){.camp-about{grid-template-columns:1fr}}
+.camp-about img{width:96px;border-radius:4px}
+.camp-about h3{font-size:20px;margin-bottom:8px}
+.camp-about p{margin:0;font-size:15.5px;line-height:1.62;color:var(--ink-2)}
+
+/* ---------------- views ---------------- */
+.view{display:none}
+.view.on{display:block;animation:vin .45s cubic-bezier(.2,.7,.3,1) both}
+@keyframes vin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view.on{animation:none}}
+.pad{padding:82px 0}
+.pad-s{padding:60px 0}
+@media (max-width:700px){.pad{padding:52px 0}.pad-s{padding:40px 0}}
+
+.sec-head{max-width:60ch;margin-bottom:46px}
+.sec-head h2{font-size:clamp(29px,3.7vw,44px);line-height:1.12;margin:14px 0 0}
+.sec-head p{font-size:18px;color:var(--ink-2);margin:16px 0 0;font-weight:400}
+
+/* ---------------- hero ---------------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,62px);line-height:1.04;margin:20px 0 0}
+.hero h1 .em{font-style:italic;color:var(--navy)}
+.hero-sub{font-size:clamp(16.5px,1.5vw,19.5px);line-height:1.6;color:var(--ink-2);
+  font-weight:400;max-width:50ch;margin:24px 0 0}
+.hero-acts{display:flex;flex-wrap:wrap;gap:13px;margin-top:34px}
+.hero-fine{margin:26px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink-3);max-width:52ch}
+.hero-fig{position:relative;margin:0}
+.hero-fig img{width:100%;max-width:450px;margin:0 auto}
+@media (max-width:940px){
+  .hero{grid-template-columns:1fr;gap:36px}
+  .hero-fig img{max-width:320px}
+}
+
+/* trust row */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule)}
+.trust-c{padding:28px 32px 28px 0;border-right:1px solid var(--rule-2)}
+.trust-c:last-child{border-right:0}
+.trust-c+.trust-c{padding-left:32px}
+.trust-c b{display:block;font-family:var(--display);font-size:21px;color:var(--navy);margin-bottom:6px}
+.trust-c p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+@media (max-width:820px){
+  .trust{grid-template-columns:1fr}
+  .trust-c{border-right:0;border-bottom:1px solid var(--rule-2);padding:20px 0}
+  .trust-c:last-child{border-bottom:0}
+  .trust-c+.trust-c{padding-left:0}
+}
+
+/* route cards on the overview */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:860px){.routes{grid-template-columns:1fr}}
+.route{display:block;width:100%;text-align:left;background:var(--white);border:1px solid var(--rule);
+  border-radius:5px;padding:28px 26px 26px;cursor:pointer;font:inherit;color:inherit;
+  box-shadow:var(--sh-1);position:relative;overflow:hidden;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,border-color .22s}
+.route:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:var(--rule)}
+.route::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tone,var(--teal-br))}
+.route .n{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.route h3{font-size:21px;margin:10px 0 9px;line-height:1.22}
+.route p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);font-weight:400}
+.route .go{margin-top:16px;font-size:13px;font-weight:700;color:var(--navy);display:inline-flex;gap:7px;align-items:center}
+.route:hover .go .ar{transform:translateX(4px)}
+.route .ar{transition:transform .22s}
+
+/* ---------------- worksheet panel ---------------- */
+.panel{background:var(--white);border:1px solid var(--rule);border-radius:6px;
+  box-shadow:var(--sh-2);overflow:hidden}
+.wtabs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--white);border-bottom:1px solid var(--rule)}
+.wtab{appearance:none;background:none;border:0;border-right:1px solid var(--rule);cursor:pointer;
+  font:inherit;text-align:left;padding:22px 24px 20px;position:relative;color:var(--ink-2);
+  transition:background .2s,color .2s}
+.wtab:last-child{border-right:0}
+.wtab::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:transparent;transition:background .2s}
+.wtab:hover,.wtab[aria-selected="true"]{background:var(--white);color:var(--ink)}
+.wtab[data-tone=teal][aria-selected=true]::before{background:var(--teal-br)}
+.wtab[data-tone=blue][aria-selected=true]::before{background:#106BAD}
+.wtab[data-tone=magenta][aria-selected=true]::before{background:var(--magenta)}
+.wtab .n{display:block;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:7px}
+.wtab[aria-selected=true] .n{color:var(--teal-ink)}
+.wtab .t{display:block;font-family:var(--display);font-size:19px;line-height:1.22}
+.wtab .d{display:block;font-size:13.5px;line-height:1.5;color:var(--ink-3);margin-top:6px}
+@media (max-width:860px){
+  .wtabs{grid-template-columns:1fr}
+  .wtab{border-right:0;border-bottom:1px solid var(--rule);padding:15px 18px}
+  .wtab::before{width:3px;height:auto;right:auto;bottom:0}
+  .wtab .d{display:none}.wtab .t{font-size:17px}
+}
+.wpanel{display:none;padding:40px}
+.wpanel.on{display:block}
+@media (max-width:700px){.wpanel{padding:24px 18px}}
+.sheet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:48px;align-items:start}
+@media (max-width:1000px){.sheet{grid-template-columns:1fr;gap:32px}}
+
+/* form */
+fieldset{border:0;margin:0 0 28px;padding:0}
+fieldset:last-of-type{margin-bottom:0}
+legend{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-3);padding:0 0 4px}
+.field{display:grid;grid-template-columns:minmax(0,1fr) 152px;gap:16px;align-items:center;
+  padding:12px 0;border-bottom:1px solid var(--rule-2)}
+.field:last-child{border-bottom:0}
+.field[hidden]{display:none}
+.field>label{font-size:15px;color:var(--ink);line-height:1.4}
+.field small{display:block;color:var(--ink-3);font-size:13px;margin-top:3px;line-height:1.45}
+.field-wide{grid-template-columns:1fr}
+.field-wide>label{margin-bottom:9px}
+@media (max-width:560px){.field{grid-template-columns:1fr;gap:8px}}
+.money{position:relative}
+.money::before{content:"$";position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--ink-3);font-size:14px;font-weight:700;pointer-events:none}
+.money input{padding-left:26px}
+input[type=number],input[type=text],input[type=email],input[type=tel],select,textarea{
+  width:100%;padding:12px 13px;border:1px solid var(--rule);border-radius:3px;background:var(--field);
+  color:var(--ink);font-family:var(--text);font-size:15px;font-variant-numeric:tabular-nums;
+  transition:border-color .16s,background .16s,box-shadow .16s}
+textarea{min-height:120px;resize:vertical;line-height:1.55}
+input[type=number]{text-align:right;font-weight:700;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input:focus,select:focus,textarea:focus{border-color:var(--teal-br);background:var(--white);
+  box-shadow:0 0 0 3px rgba(0,184,184,.14);outline:none}
+
+/* readout, bright */
+.readout{background:var(--white);border:1px solid var(--rule);border-radius:5px;padding:32px;box-shadow:var(--sh-2);
+  position:sticky;top:150px}
+@media (max-width:1000px){.readout{position:static}}
+.readout .cap{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.bignum{display:flex;align-items:baseline;gap:11px;font-weight:900;color:var(--navy);
+  font-size:clamp(46px,6.6vw,66px);line-height:.95;letter-spacing:-.038em;font-variant-numeric:tabular-nums}
+.bignum .u{font-size:17px;font-weight:700;color:var(--ink-2);letter-spacing:0}
+.bigcap{font-size:14.5px;line-height:1.58;color:var(--ink-2);margin:15px 0 0;font-weight:400}
+
+.runway{margin:26px 0 0}
+.runway-track{display:flex;gap:4px;height:48px}
+.runway-cell{flex:1;position:relative;overflow:hidden;border-radius:2px;background:var(--track);
+  border:1px solid var(--rule)}
+.runway-cell.dry{background:transparent;border-style:dashed}
+.runway-fill{position:absolute;inset:0 auto 0 0;width:0;
+  background:linear-gradient(180deg,var(--teal-br),var(--teal));
+  transition:width .55s cubic-bezier(.22,.61,.36,1)}
+.runway-scale{display:flex;justify-content:space-between;margin-top:9px;font-size:9.5px;
+  font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){.runway-fill{transition:none}}
+
+.ledger-scroll{overflow-x:auto}
+.ledger{width:100%;border-collapse:collapse;margin:24px 0 0;font-size:14.5px}
+.ledger td{padding:9px 0;border-bottom:1px solid var(--rule-2);color:var(--ink-2)}
+.ledger td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;
+  font-weight:700;color:var(--ink)}
+.ledger tr.tot td{border-bottom:0;border-top:1px solid var(--rule);padding-top:12px;color:var(--ink)}
+.ledger tr.tot td:first-child{font-weight:700}
+
+.note{display:flex;gap:12px;padding:15px 17px;border-radius:3px;margin-top:22px;background:var(--tint);
+  border:1px solid var(--rule);border-left:3px solid var(--ink-3);
+  font-size:13.5px;line-height:1.58;color:var(--ink-2)}
+.note.warn{border-left-color:var(--amber)}
+.note.high{border-left-color:var(--magenta)}
+.note b{color:var(--ink);font-weight:700}
+.note .d{flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;margin-top:7px;opacity:.5}
+
+.meter{margin:26px 0 0;display:flex;flex-direction:column;gap:16px}
+.meter-row{display:grid;grid-template-columns:minmax(0,1fr) 158px;gap:18px;align-items:center}
+.meter-row label{font-size:14.5px;color:var(--ink-2)}
+.meter-bar{height:8px;border-radius:2px;background:var(--track);border:1px solid var(--rule);
+  overflow:hidden;margin-top:8px}
+.meter-bar i{display:block;height:100%;width:0;transition:width .5s cubic-bezier(.22,.61,.36,1)}
+@media (prefers-reduced-motion:reduce){.meter-bar i{transition:none}}
+.b-low{background:linear-gradient(90deg,var(--teal),var(--teal-br))}
+.b-mod{background:linear-gradient(90deg,#C97A00,var(--amber))}
+.b-high{background:linear-gradient(90deg,#8E0050,var(--magenta))}
+.b-unknown{background:repeating-linear-gradient(135deg,var(--ink-3) 0 3px,transparent 3px 8px);opacity:.5}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 9px;
+  border-radius:3px;text-align:center;white-space:nowrap;border:1px solid currentColor}
+.tag[data-b=low]{color:var(--teal-ink)}
+.tag[data-b=mod]{color:var(--amber-ink)}
+.tag[data-b=high]{color:var(--magenta)}
+.tag[data-b=unknown]{color:var(--ink-3)}
+@media (max-width:420px){.meter-row{grid-template-columns:1fr}.meter-row .tag{justify-self:start}}
+
+/* capture */
+.capture{margin-top:28px;padding-top:26px;border-top:1px solid var(--rule)}
+.capture h3{font-size:21px;margin-bottom:6px}
+.capture .lede{font-size:14px;color:var(--ink-2);margin:0 0 20px;font-weight:400}
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.cap-grid{grid-template-columns:1fr}}
+.lbl{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:6px}
+.consent{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;font-size:13px;
+  line-height:1.55;color:var(--ink-2)}
+.consent input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:var(--navy)}
+.capture .btn,.enq .btn{margin-top:20px;width:100%}
+.status{margin-top:14px;font-size:13.5px;line-height:1.55;display:none}
+.status.show{display:block}
+.status.err{color:var(--magenta)}
+.status.ok{color:var(--teal-ink)}
+.micro{margin-top:15px;font-size:12.5px;line-height:1.55;color:var(--ink-3)}
+
+/* ---------------- coverage ---------------- */
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:960px){.prods{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.prods{grid-template-columns:1fr}}
+.prod{background:var(--white);border:1px solid var(--rule);border-radius:5px;padding:28px 25px;
+  box-shadow:var(--sh-1);transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s}
+.prod:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.prod .dot{width:24px;height:3px;border-radius:2px;margin-bottom:16px}
+.prod h3{font-size:19px;margin-bottom:13px}
+.prod ul{margin:0;padding-left:18px;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.prod li{margin-bottom:6px}
+.prod li::marker{color:var(--ink-3)}
+.fine{margin-top:32px;font-size:13px;line-height:1.65;color:var(--ink-3);max-width:96ch}
+
+/* ---------------- about ---------------- */
+.about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:60px;align-items:start}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:40px}}
+.about-lede{font-family:var(--display);font-size:22px;line-height:1.46;color:var(--ink);margin:16px 0 20px}
+.about p{color:var(--ink-2);margin:0 0 17px;max-width:58ch;font-weight:400;font-size:16.5px}
+.about p strong{font-weight:700;color:var(--ink)}
+.about-fig{margin:0 0 20px;max-width:280px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 20px;
+  padding:22px 0;border-bottom:1px solid var(--rule)}
+.steps li:first-child{border-top:1px solid var(--rule)}
+.steps li::before{content:counter(s,decimal-leading-zero);grid-row:span 2;font-size:10.5px;
+  font-weight:700;letter-spacing:.1em;color:var(--teal-ink);padding-top:6px}
+.steps b{grid-column:2;font-family:var(--display);font-size:19px;font-weight:400;display:block}
+.steps span{grid-column:2;font-size:14.5px;line-height:1.6;color:var(--ink-2);font-weight:400}
+
+.about-below{margin-top:52px;padding-top:8px}
+.about-below .facts{margin-top:0}
+/* about: qualitative facts only, no invented numbers */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:5px;overflow:hidden;margin-top:32px}
+.facts div{background:var(--white);padding:18px 18px 16px}
+.facts b{display:block;font-family:var(--display);font-size:19px;color:var(--navy);line-height:1.2}
+.facts span{display:block;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:6px}
+
+/* preview only: what the client still has to confirm */
+.confirm{margin-top:28px;max-width:96ch;border:1px dashed var(--rule);border-left:3px solid var(--amber);
+  border-radius:4px;padding:22px 24px;background:var(--tint)}
+.confirm h4{font-family:var(--text);font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--amber-ink);margin:0 0 6px}
+.confirm p{margin:0 0 14px;font-size:13.5px;color:var(--ink-2)}
+.confirm ol{margin:0;padding-left:20px;font-size:14px;line-height:1.62;color:var(--ink-2)}
+.confirm li{margin-bottom:8px}
+
+/* ---------------- contact ---------------- */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr;gap:40px}}
+.cards{display:flex;flex-direction:column;gap:14px;margin-top:26px}
+.card{display:flex;align-items:center;gap:18px;padding:22px 24px;background:var(--white);
+  border:1px solid var(--rule);border-radius:5px;box-shadow:var(--sh-1);text-decoration:none;
+  color:inherit;transition:transform .2s cubic-bezier(.2,.7,.3,1),box-shadow .2s,border-color .2s}
+a.card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--navy)}
+.card .ic{width:44px;height:44px;flex:none;border-radius:4px;background:var(--tint);color:var(--navy);
+  display:grid;place-items:center}
+.card .k{display:block;font-size:9.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:3px}
+.card .v{display:block;font-size:17px;font-weight:700;color:var(--ink);word-break:break-word;line-height:1.35}
+.enq{background:var(--white);border:1px solid var(--rule);border-radius:5px;padding:32px;box-shadow:var(--sh-2)}
+.enq h3{font-size:21px;margin-bottom:6px}
+.enq .lede{font-size:14px;color:var(--ink-2);margin:0 0 20px;font-weight:400}
+
+/* ---------------- footer ---------------- */
+footer{background:var(--white);border-top:1px solid var(--rule);padding:26px 0 34px;
+  font-size:13px;line-height:1.7;color:var(--ink-3)}
+.foot{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:baseline;justify-content:space-between}
+.foot-c{margin:0;max-width:74ch}
+.foot-link{appearance:none;background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  font-weight:700;color:var(--navy);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.foot-link:hover{color:var(--teal)}
+
+/* the disclosures page */
+.legal{max-width:88ch}
+.legal .blk+.blk{margin-top:28px;padding-top:28px;border-top:1px solid var(--rule)}
+.legal h4{font-family:var(--text);font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--teal-ink);margin:0 0 11px}
+.legal p{margin:0 0 14px;font-size:14.5px;line-height:1.72;color:var(--ink-2);max-width:none}
+.legal a{color:var(--navy)}
+</style>
+
+<header class="hdr">
+  <div class="wrap">
+    <div class="hdr-top">
+      <button class="brand" type="button" data-go="overview" aria-label="Myesha Barnes, back to overview">
+        <span class="mk" aria-hidden="true">MB</span>
+        <span>
+          <b>Myesha Barnes</b>
+          <span class="cred" id="credLine">Supplemental Insurance</span>
+        </span>
+      </button>
+      <div class="hdr-act">
+        <a class="hdr-tel" id="hdrTel" href="#">
+          <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <span id="hdrTelText"></span>
+        </a>
+        <button class="btn btn-primary" type="button" data-go="contact">Book a review</button>
+      </div>
+    </div>
+    <div class="navtabs" role="tablist" aria-label="Sections">
+      <button class="navtab" role="tab" id="nt-overview" aria-controls="v-overview" aria-selected="true">Overview</button>
+      <button class="navtab" role="tab" id="nt-check"    aria-controls="v-check"    aria-selected="false">The Gap Check</button>
+      <button class="navtab" role="tab" id="nt-coverage" aria-controls="v-coverage" aria-selected="false">Coverage</button>
+      <button class="navtab" role="tab" id="nt-about"    aria-controls="v-about"    aria-selected="false">About</button>
+      <button class="navtab" role="tab" id="nt-contact"  aria-controls="v-contact"  aria-selected="false">Contact</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= OVERVIEW ================= -->
+<div class="view on" id="v-overview" role="tabpanel" aria-labelledby="nt-overview">
+  <div class="wrap pad">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">The Protection Gap Check</p>
+        <h1>How long could your household pay its bills <span class="em">without your paycheque?</span></h1>
+        <p class="hero-sub">Most people have never run the number. Three short worksheets do it with you,
+          using figures only you enter, and show the answer on screen before anyone asks for your name.</p>
+        <div class="hero-acts">
+          <button class="btn btn-primary" type="button" data-go="check" data-w="income">Run my income runway</button>
+          <button class="btn btn-line" type="button" data-go="about">Who I am</button>
+        </div>
+        <p class="hero-fine">Free, about two minutes each. These are educational estimates built from what you type.
+          Not a financial needs analysis, not an application, not a statement of insurability.</p>
+      </div>
+      <figure class="hero-fig">
+        <img src="assets/portrait.webp" alt="Myesha Barnes, supplemental insurance representative" width="900" height="1201">
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap"><div class="trust">
+    <div class="trust-c"><b>Over 100 years</b><p>Combined Insurance has provided supplemental insurance for more than a century and is an affiliate of Chubb.</p></div>
+    <div class="trust-c"><b>Markham, Ontario</b><p>A Canadian regulated company with its Canadian head office in Markham, serving Canadians.</p></div>
+    <div class="trust-c"><b>Paid to you</b><p>Supplemental benefits are paid directly to you, to spend wherever the pressure actually is.</p></div>
+  </div></div>
+
+  <div class="wrap">
+    <div class="carrier-bar">
+      <div class="carrier">
+        <p class="k">Products underwritten by</p>
+        <img src="assets/combined.png" alt="Combined Insurance, a Chubb company" width="376" height="138">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap pad">
+    <div class="sec-head">
+      <p class="eyebrow">Pick a starting point</p>
+      <h2>Three ways to find out where the gap actually is.</h2>
+      <p>Each answers a different question. Start anywhere. Nothing is saved or sent unless you choose to send it.</p>
+    </div>
+    <div class="routes">
+      <button class="route" type="button" data-go="check" data-w="income" style="--tone:#00B8B8">
+        <span class="n">Worksheet 01</span>
+        <h3>Income Protection</h3>
+        <p>How many months could your household keep paying the essentials if your income stopped tomorrow?</p>
+        <span class="go">Open worksheet <span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button class="route" type="button" data-go="check" data-w="family" style="--tone:#106BAD">
+        <span class="n">Worksheet 02</span>
+        <h3>Family Protection Score</h3>
+        <p>A two minute check across savings, income, coverage and what you actually know about your benefits.</p>
+        <span class="go">Open worksheet <span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button class="route" type="button" data-go="check" data-w="ci" style="--tone:#C60070">
+        <span class="n">Worksheet 03</span>
+        <h3>Critical Illness Impact</h3>
+        <p>What a serious diagnosis would cost the household, and what would be left to cover it.</p>
+        <span class="go">Open worksheet <span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= GAP CHECK ================= -->
+<div class="view" id="v-check" role="tabpanel" aria-labelledby="nt-check">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <p class="eyebrow">The Protection Gap Check</p>
+      <h2>Put a number on it.</h2>
+      <p>Everything runs in your browser. Your result appears as you type, and nothing is sent unless you choose to send it.</p>
+    </div>
+
+    <div class="panel">
+      <div class="wtabs" role="tablist" aria-label="Choose a worksheet">
+        <button class="wtab" role="tab" id="wt-income" aria-controls="w-income" aria-selected="true" data-tone="teal">
+          <span class="n">Worksheet 01</span><span class="t">Income Protection</span>
+          <span class="d">How many months could you keep paying the essentials with no income?</span></button>
+        <button class="wtab" role="tab" id="wt-family" aria-controls="w-family" aria-selected="false" data-tone="blue">
+          <span class="n">Worksheet 02</span><span class="t">Family Protection Score</span>
+          <span class="d">A two minute check across savings, income, coverage and what you know.</span></button>
+        <button class="wtab" role="tab" id="wt-ci" aria-controls="w-ci" aria-selected="false" data-tone="magenta">
+          <span class="n">Worksheet 03</span><span class="t">Critical Illness Impact</span>
+          <span class="d">What a serious diagnosis would cost, and what is left to cover it.</span></button>
+      </div>
+
+      <!-- 01 -->
+      <div class="wpanel on" role="tabpanel" id="w-income" aria-labelledby="wt-income">
+        <div class="sheet">
+          <form id="f-income" novalidate>
+            <fieldset><legend>What comes in</legend>
+              <div class="field"><label for="i-income">Monthly household take home income
+                <small>After tax and deductions, everyone in the household</small></label>
+                <div class="money"><input type="number" id="i-income" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+            </fieldset>
+            <fieldset><legend>What must be paid every month</legend>
+              <div class="field"><label for="i-housing">Mortgage or rent</label>
+                <div class="money"><input type="number" id="i-housing" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="i-transport">Car and transportation<small>Payments, insurance, fuel, transit</small></label>
+                <div class="money"><input type="number" id="i-transport" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="i-debt">Debt payments<small>Credit cards, loans, lines of credit</small></label>
+                <div class="money"><input type="number" id="i-debt" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="i-essentials">Groceries, utilities and essentials<small>Food, hydro, heat, phone, internet, insurance</small></label>
+                <div class="money"><input type="number" id="i-essentials" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="i-childcare">Childcare and dependant costs</label>
+                <div class="money"><input type="number" id="i-childcare" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="i-other">Other required monthly costs</label>
+                <div class="money"><input type="number" id="i-other" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+            </fieldset>
+            <fieldset><legend>What you could fall back on</legend>
+              <div class="field"><label for="i-savings">Accessible emergency savings<small>Money you could actually reach within days</small></label>
+                <div class="money"><input type="number" id="i-savings" min="0" step="100" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field field-wide"><label for="i-cover">Do you already have income replacement or disability coverage?</label>
+                <select id="i-cover"><option value="unsure">I am not sure</option>
+                <option value="yes-known">Yes, and I know what it pays</option>
+                <option value="yes-unknown">Yes, but I do not know what it pays</option>
+                <option value="no">No</option></select></div>
+            </fieldset>
+          </form>
+          <div class="readout">
+            <p class="cap">Your estimated savings runway</p>
+            <div class="bignum figure"><span id="o-months">0.0</span><span class="u">months</span></div>
+            <p class="bigcap" id="o-caption">Enter your figures and this updates as you type.</p>
+            <div class="runway" aria-hidden="true">
+              <div class="runway-track" id="o-track"></div>
+              <div class="runway-scale"><span>Month 1</span><span>Month 6</span><span>Month 12</span></div>
+            </div>
+            <div class="ledger-scroll"><table class="ledger"><caption class="sr">Essential monthly expenses</caption><tbody id="o-ledger"></tbody></table></div>
+            <div class="note" id="o-note"><span class="d"></span><span id="o-note-t"></span></div>
+            <div class="capture" data-src="Income Protection Calculator">
+              <h3>Want me to walk through this with you?</h3>
+              <p class="lede">I will read what you entered, ask what the worksheet cannot, and tell you honestly whether anything needs doing.</p>
+              <div class="cf"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="wpanel" role="tabpanel" id="w-family" aria-labelledby="wt-family">
+        <div class="sheet">
+          <form id="f-family" novalidate>
+            <fieldset><legend>Your household</legend>
+              <div class="field"><label for="s-savings">Accessible emergency savings</label>
+                <div class="money"><input type="number" id="s-savings" min="0" step="100" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="s-fixed">Monthly fixed obligations<small>Everything owed whether you work or not</small></label>
+                <div class="money"><input type="number" id="s-fixed" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field field-wide"><label for="s-deps">How many people depend on your income?</label>
+                <select id="s-deps"><option value="0">Just me</option><option value="1">One other person</option>
+                <option value="2">Two others</option><option value="3">Three or more others</option></select></div>
+              <div class="field field-wide"><label for="s-earners">Is the household single or dual income?</label>
+                <select id="s-earners"><option value="dual">Dual income</option><option value="single">Single income</option></select></div>
+            </fieldset>
+            <fieldset><legend>What you know and what you hold</legend>
+              <div class="field field-wide"><label for="s-know">How well do you know your benefits at work?</label>
+                <select id="s-know"><option value="rough">I have a rough idea</option>
+                <option value="exact">I know exactly what they pay and for how long</option>
+                <option value="unsure">I am not sure what they cover</option>
+                <option value="none">I do not have benefits at work</option></select></div>
+              <div class="field field-wide"><label for="s-income">Income protection if you could not work</label>
+                <select id="s-income"><option value="unsure">I am not sure</option>
+                <option value="yes-known">Yes, and I know the amount</option>
+                <option value="yes-unknown">Yes, but I do not know the amount</option>
+                <option value="no">No</option></select></div>
+              <div class="field field-wide"><label for="s-ci">Critical illness protection</label>
+                <select id="s-ci"><option value="unsure">I am not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+              <div class="field field-wide"><label for="s-life">Life protection</label>
+                <select id="s-life"><option value="unsure">I am not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+            </fieldset>
+          </form>
+          <div class="readout">
+            <p class="cap">Your family protection score</p>
+            <div class="bignum figure"><span id="o-score">0</span><span class="u">out of 100</span></div>
+            <p class="bigcap" id="o-score-cap">Answer the questions and watch the score build.</p>
+            <div class="meter" id="o-meter"></div>
+            <div class="note" id="o-score-note"><span class="d"></span><span id="o-score-note-t"></span></div>
+            <div class="capture" data-src="Family Protection Score">
+              <h3>Have me review your score</h3>
+              <p class="lede">The score points at where to look. A short conversation is what makes it useful.</p>
+              <div class="cf"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="wpanel" role="tabpanel" id="w-ci" aria-labelledby="wt-ci">
+        <div class="sheet">
+          <form id="f-ci" novalidate>
+            <fieldset><legend>The scenario</legend>
+              <div class="field field-wide"><label for="c-months">How long away from work do you want to model?</label>
+                <select id="c-months"><option value="6">Six months</option><option value="3">Three months</option><option value="12">Twelve months</option></select></div>
+              <div class="field"><label for="c-essentials">Monthly essential household expenses<small>Housing, transport, debt, food, utilities</small></label>
+                <div class="money"><input type="number" id="c-essentials" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="c-childcare">Extra childcare during recovery<small>Monthly, above what you already spend</small></label>
+                <div class="money"><input type="number" id="c-childcare" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="c-recovery">Other recovery related costs<small>Monthly. Travel to treatment, parking, prescriptions, household help</small></label>
+                <div class="money"><input type="number" id="c-recovery" min="0" step="25" inputmode="numeric" placeholder="0"></div></div>
+            </fieldset>
+            <fieldset><legend>What you could put against it</legend>
+              <div class="field"><label for="c-savings">Accessible emergency savings</label>
+                <div class="money"><input type="number" id="c-savings" min="0" step="100" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field field-wide"><label for="c-benefit-known">Do you know what your employer disability or sick benefit pays monthly?</label>
+                <select id="c-benefit-known"><option value="unsure">I am not sure</option>
+                <option value="known">Yes, I know the monthly amount</option><option value="none">I do not have one</option></select></div>
+              <div class="field" id="c-benefit-row" hidden><label for="c-benefit">Monthly employer benefit amount</label>
+                <div class="money"><input type="number" id="c-benefit" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+              <div class="field"><label for="c-spouse">Partner income available toward essentials<small>Monthly, only the part not already counted</small></label>
+                <div class="money"><input type="number" id="c-spouse" min="0" step="50" inputmode="numeric" placeholder="0"></div></div>
+            </fieldset>
+          </form>
+          <div class="readout">
+            <p class="cap">Illustrative financial gap</p>
+            <div class="bignum figure"><span id="o-gap">$0</span></div>
+            <p class="bigcap" id="o-gap-cap">The shortfall between what the period would cost and what you listed against it.</p>
+            <div class="ledger-scroll"><table class="ledger"><caption class="sr">Costs and resources over the period</caption><tbody id="o-ci-ledger"></tbody></table></div>
+            <div class="note" id="o-ci-note"><span class="d"></span><span id="o-ci-note-t"></span></div>
+            <div class="capture" data-src="Critical Illness Financial Impact">
+              <h3>Review my critical illness gap</h3>
+              <p class="lede">We start with what you already have. If nothing needs changing, I will tell you that.</p>
+              <div class="cf"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= COVERAGE ================= -->
+<div class="view" id="v-coverage" role="tabpanel" aria-labelledby="nt-coverage">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <p class="eyebrow">What I can help with</p>
+      <h2>Supplemental cover sits beside what you already have.</h2>
+      <p>It does not replace provincial health coverage or a group plan at work. It pays you directly, so the money
+         goes wherever the pressure actually is. Below is what Combined Insurance currently offers in Canada.</p>
+    </div>
+    <div class="prods">
+      <article class="prod"><div class="dot" style="background:#00B8B8"></div><h3>Disability Insurance</h3>
+        <ul><li>Benefits up to $3,000 per month</li><li>Total or partial disability benefits</li>
+        <li>Return to work benefit</li><li>Income Guard</li></ul></article>
+      <article class="prod"><div class="dot" style="background:#C60070"></div><h3>Critical Illness Insurance</h3>
+        <ul><li>Lump sum paid directly to you on diagnosis of a covered condition</li>
+        <li>Up to 26 standard covered conditions, plus partial covered conditions</li>
+        <li>Protection ranging from $10,000 to $100,000</li>
+        <li>Four benefit plan types and four coverage term options</li>
+        <li>A return of premium option if you are in good health</li></ul></article>
+      <article class="prod"><div class="dot" style="background:#106BAD"></div><h3>Cancer Care</h3>
+        <ul><li>Daily cash benefits up to $400 per day paid directly to you</li>
+        <li>Four policy types to match needs and budget</li>
+        <li>Coverage options for a spouse and children</li>
+        <li>24 hour access to medical guidance through Teladoc</li>
+        <li>No lifetime maximum on benefits</li></ul></article>
+      <article class="prod"><div class="dot" style="background:#F8991D"></div><h3>Accident and Sickness</h3>
+        <ul><li>Accidental death and dismemberment</li>
+        <li>Daily hospital confinement and daily intensive care</li>
+        <li>Ambulance reimbursement</li>
+        <li>After hospital stay and outpatient surgery benefits</li></ul></article>
+      <article class="prod"><div class="dot" style="background:#C3CF21"></div><h3>Life Insurance</h3>
+        <ul><li>Guaranteed Life Insurance</li><li>Supplemental Life Insurance</li></ul></article>
+      <article class="prod"><div class="dot" style="background:#FFD100"></div><h3>Not sure what you need?</h3>
+        <ul><li>Start with a worksheet and we work from your own numbers</li>
+        <li>We review what you already hold first, including anything through work</li>
+        <li>If your current coverage handles it, that is the answer</li></ul></article>
+    </div>
+    <p class="fine">Product features above are drawn from Combined Insurance Canada's published product pages.
+      All benefits, amounts, covered conditions and availability are subject to policy terms, eligibility,
+      underwriting and province. Exclusions and limitations may apply. See the policy for complete details of
+      features, benefits, definitions, limitations and exclusions. Nothing here is an offer of coverage or a
+      guarantee that any application will be accepted.</p>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div class="view" id="v-about" role="tabpanel" aria-labelledby="nt-about">
+  <div class="wrap pad">
+    <div class="about">
+      <div>
+        <figure class="about-fig"><img id="aboutPortrait" src="" alt="Myesha Barnes" width="900" height="1201"></figure>
+        <p class="eyebrow">About Myesha</p>
+        <p class="about-lede">I have spent more than ten years in supplemental insurance, and I still
+          open every conversation the same way. Not with whether you want coverage. With what would
+          actually happen to your household if your income stopped for six months.</p>
+        <p>In that time I have had that conversation with a lot of people, and the pattern rarely
+          changes. Most have a rough answer and an uncomfortable feeling. Very few have a number.
+          The moment we work the number out together, the conversation changes, because you can
+          finally see the shape of the thing you have been avoiding.</p>
+        <p>The people I work with are usually not shopping for insurance when we meet. They are
+          working, raising families, paying down a mortgage, and quietly assuming that if something
+          went wrong they would find a way through. Sometimes that is true. More often there is a
+          gap between what they believe their coverage does and what it actually pays, and nobody
+          has ever walked them through it.</p>
+        <p>What ten years teaches you is that the details decide everything. Not the policy name,
+          but the waiting period, how long a benefit actually lasts, whether it follows you if you
+          change jobs, and what is quietly excluded. That is the part I am useful for.</p>
+        <p>Sometimes the honest answer is that you are <strong>already fine</strong>, and I will say
+          so. Where there is a real gap, I will show you what Combined Insurance offers, what it
+          costs, and exactly what it does and does not do. No manufactured urgency, and no
+          recommendation I could not defend to your family.</p>
+
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:18px">What happens after you send a worksheet</p>
+        <ol class="steps">
+          <li><b>You get your result first</b><span>The number appears while you fill the worksheet in. You never hand over details to see it.</span></li>
+          <li><b>I read it before I call</b><span>Your result and context arrive together, so the call starts where your worksheet left off.</span></li>
+          <li><b>A short call, at a time you pick</b><span>Usually fifteen minutes. We go through your existing coverage first, including anything through work.</span></li>
+          <li><b>Options only where a gap is real</b><span>If your current coverage already handles it, that is the answer and there is nothing to buy.</span></li>
+        </ol>
+        <div style="margin-top:32px"><button class="btn btn-primary" type="button" data-go="check" data-w="income">Start a worksheet</button></div>
+      </div>
+    </div>
+    <div class="about-below">
+      <div class="facts" id="aboutFacts"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div class="view" id="v-contact" role="tabpanel" aria-labelledby="nt-contact">
+  <div class="wrap pad">
+    <div class="contact">
+      <div>
+        <p class="eyebrow">Talk to me directly</p>
+        <h2 style="font-size:clamp(29px,3.7vw,44px);line-height:1.12;margin:14px 0 0">Prefer to skip the worksheet?</h2>
+        <p style="font-size:18px;color:var(--ink-2);font-weight:400;margin:16px 0 0;max-width:46ch">
+          Call or email and we will go through it together. No obligation and no pressure.</p>
+        <div class="cards" id="contactCards"></div>
+        <p class="micro" id="contactFine"></p>
+      </div>
+      <div class="enq">
+        <h3>Send me a message</h3>
+        <p class="lede">Tell me roughly what you are trying to work out and I will come back to you.</p>
+        <div id="enqSlot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= LEGAL ================= -->
+<div class="view" id="v-legal" role="region" aria-label="Important information">
+  <div class="wrap pad">
+    <div class="sec-head">
+      <p class="eyebrow">Disclosures</p>
+      <h2>Important information</h2>
+      <p>The disclosures that apply to this website, the worksheets on it, and the products described.</p>
+    </div>
+    <div class="legal">
+      <div class="blk"><h4>Important information</h4>
+      <p>Myesha Barnes is a licensed insurance representative offering supplemental insurance products from
+         Combined Insurance. This is a personal website operated by Myesha Barnes. It is not operated by, and its
+         content has not been produced by, Combined Insurance Company of America, Combined Insurance or Chubb.</p></div>
+      <div class="blk"><h4>About the worksheets</h4>
+      <p>The Income Protection Calculator, Family Protection Score and Critical Illness Financial Impact worksheets
+         produce educational estimates based entirely on information you enter. They run in your browser and nothing
+         is transmitted unless you complete and submit a form. They are not a financial needs analysis, not financial
+         or tax advice, not a statement of insurability, and not an application for insurance.</p>
+      <p>An estimated financial gap is not the same as an amount of insurance you need or should buy. Existing
+         coverage, including any benefit through an employer, is deliberately treated conservatively and separately,
+         because eligibility, waiting periods, benefit duration, tax treatment and policy terms vary and cannot be
+         assessed by a calculator. Results do not promise coverage, eligibility, claim approval, savings or any
+         particular outcome.</p></div>
+      <div class="blk"><h4>Product information</h4>
+      <p>Product features described on this page are subject to policy terms, conditions, exclusions, limitations,
+         eligibility, underwriting and availability in your province. See the policy for complete details. Products
+         are underwritten by Combined Insurance Company of America. Coverage is subject to the language of the policy
+         as actually issued.</p></div>
+      <div class="blk"><h4>Your information</h4>
+      <p>If you submit a form, the details you provide are used to contact you about your result and your insurance
+         needs. You can withdraw consent at any time by replying to any message or by contacting Myesha Barnes using
+         the details on this page. <span id="privacySlot"></span></p>
+</div></div>
+    </div>
+    <div style="margin-top:36px"><button class="btn btn-line" type="button" data-go="overview">Back to the site</button></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-carrier">
+      <img src="assets/combined.png" alt="Combined Insurance, a Chubb company" width="376" height="138">
+      <p>Myesha Barnes offers supplemental insurance products underwritten by Combined Insurance
+         Company of America. The Chubb logo and name are registered trademarks of Chubb Limited.
+         Combined Insurance is a trademark of Combined Insurance Company of America. Both are shown
+         here only to identify the insurer whose products are offered.</p>
+    </div>
+  </div>
+  <div class="wrap foot">
+    <p class="foot-c">&copy; <span id="yr"></span> Myesha Barnes. Licensed insurance representative.</p>
+    <button class="foot-link" type="button" data-go="legal">Important information and disclosures</button>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   CONFIG
+   ================================================================ */
+const CONFIG = {
+  name:        "Myesha Barnes",
+  credential:  "Supplemental Insurance",
+  phone:       "416-712-8048",
+  email:       "myesha.barnes@ca.combined.com",
+  yearsLine:   "More than ten years",  // TO CONFIRM with Myesha
+  licenceLine: "",   // e.g. "Licensed in Ontario, licence #0000000"
+  /* Claims shown to the client in preview only, so nothing unverified goes live by accident. */
+  confirmList: [
+    "More than ten years in supplemental insurance. Correct, or should this be a specific figure?",
+    "Which provinces are you licensed in, and what licence number should appear?",
+    "Any designations, awards or Combined recognition you want listed?",
+    "Do you want a client story on this page? It needs their written consent and compliance sign off.",
+    "Preferred service area, so people know whether you cover them.",
+    "Is there anything here you would not say to a client out loud?"
+  ],
+  bookingUrl:  "",   // e.g. a Calendly link
+  serviceArea: "",   // e.g. "Greater Toronto Area and southern Ontario"
+  privacyUrl:  "",   // link to her privacy notice
+  formEndpoint:"",   // where leads POST. Empty = the form says so instead of pretending.
+  previewNotice:"Property of Aning Media Group",  // client preview marker. Set to "" to remove.
+  siteUrl:     "",   // full site URL. On a campaign page the wordmark links here; blank = no link out.
+  campaign:    null  // null = full site. "income" | "family" | "ci" = single lead magnet landing page.
+};
+
+/* Hooks come from the operating manual's own consumer hooks, one per funnel. */
+const CAMPAIGNS={
+  income:{
+    key:"income", eyebrow:"Income Protection Calculator",
+    h1:'How long could you afford to be <em>off work?</em>',
+    sub:"Put a real number on it. This calculator works out how many months your household could keep paying its essential bills if your regular income stopped tomorrow.",
+    pts:["Takes about two minutes","Your result appears on screen before anyone asks for your name",
+         "Nothing is sent unless you choose to send it"]
+  },
+  family:{
+    key:"family", eyebrow:"Family Protection Score",
+    h1:'How financially protected is <em>your family?</em>',
+    sub:"A two minute check across savings, income, existing coverage and what you actually know about your benefits at work. You get a score out of 100 and a breakdown of where the exposure sits.",
+    pts:["Takes about two minutes","An educational indicator, not a statement of insurability",
+         "Nothing is sent unless you choose to send it"]
+  },
+  ci:{
+    key:"ci", eyebrow:"Critical Illness Financial Impact",
+    h1:'Could your finances survive <em>a serious diagnosis?</em>',
+    sub:"Model what a stretch away from work would actually cost your household, and what you would have to put against it. You see the shortfall in dollars, on screen.",
+    pts:["Takes about two minutes","Works from your figures, not averages",
+         "Nothing is sent unless you choose to send it"]
+  }
+};
+
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const num = id => { const v=parseFloat(($(id)||{}).value); return isFinite(v)&&v>0?v:0; };
+const val = id => (($(id)||{}).value)||"";
+const money = n => "$"+Math.round(n).toLocaleString("en-CA");
+const clamp = (n,a,b)=>Math.min(b,Math.max(a,n));
+const telHref = p => "tel:+1"+p.replace(/[^\d]/g,"");
+
+$("#yr").textContent = new Date().getFullYear();
+$("#credLine").textContent = CONFIG.credential;
+
+/* ---------------- contact surfaces ---------------- */
+(function(){
+  const t=$("#hdrTel");
+  if(CONFIG.phone){ t.href=telHref(CONFIG.phone); $("#hdrTelText").textContent=CONFIG.phone; }
+  else t.style.display="none";
+
+  const ICON={
+    phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>',
+    mail:'<path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 7-10 6L2 7"/>',
+    cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'
+  };
+  const svg=k=>'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[k]+'</svg>';
+  const rows=[
+    ["phone","Phone",CONFIG.phone,CONFIG.phone?telHref(CONFIG.phone):""],
+    ["mail","Email",CONFIG.email,CONFIG.email?"mailto:"+CONFIG.email:""],
+    ["cal","Book a time",CONFIG.bookingUrl?"Choose a slot":"",CONFIG.bookingUrl],
+    ["pin","Service area",CONFIG.serviceArea,""]
+  ];
+  const box=$("#contactCards");
+  rows.forEach(([ic,k,v,href])=>{
+    if(!v) return;
+    const el=document.createElement(href?"a":"div");
+    el.className="card";
+    if(href){ el.href=href; if(href.startsWith("http")){el.target="_blank";el.rel="noopener";} }
+    el.innerHTML='<span class="ic">'+svg(ic)+'</span><span><span class="k">'+k+'</span><span class="v">'+v+"</span></span>";
+    box.appendChild(el);
+  });
+  $("#contactFine").textContent = CONFIG.licenceLine || "";
+  if(CONFIG.bookingUrl){
+    $$('[data-go="contact"].btn').forEach(b=>{ b.textContent="Book a 15 minute review"; });
+  }
+  $("#privacySlot").textContent = CONFIG.privacyUrl ? "" : "A privacy notice should be linked here before launch.";
+  if(CONFIG.privacyUrl){
+    const a=document.createElement("a"); a.href=CONFIG.privacyUrl; a.textContent="Privacy notice";
+    a.target="_blank"; a.rel="noopener"; $("#privacySlot").appendChild(a);
+  }
+})();
+
+/* ---------------- preview marker ---------------- */
+(function(){
+  const n=CONFIG.previewNotice;
+  if(!n) return;
+  document.body.classList.add("preview");
+  const el=document.createElement("div");
+  el.className="preview-badge";
+  el.setAttribute("role","note");
+  el.innerHTML='<span class="dot" aria-hidden="true"></span>'+
+    '<b>Preview</b><span class="sep">|</span><span class="pv-lbl"></span>';
+  el.querySelector(".pv-lbl").textContent=n;
+  document.body.appendChild(el);
+})();
+
+/* ---------------- about page ---------------- */
+(function(){
+  const img=$("#aboutPortrait"), src=$("#v-overview .hero-fig img");
+  if(img && src) img.src=src.src;
+
+  /* Qualitative only. An invented client count or dollar figure on a licensed
+     representative's page is a claim she would have to defend, so there is none. */
+  const facts=[
+    [CONFIG.yearsLine, "In supplemental insurance"],
+    ["Individuals and families", "Who I work with"],
+    ["Accident, illness, disability, life", "What I can review"]
+  ];
+  const box=$("#aboutFacts");
+  if(box) box.innerHTML=facts.map(([b,k])=>"<div><b>"+b+"</b><span>"+k+"</span></div>").join("");
+
+  // preview only, disappears with CONFIG.previewNotice
+  if(CONFIG.previewNotice && Array.isArray(CONFIG.confirmList) && CONFIG.confirmList.length){
+    const el=document.createElement("div");
+    el.className="confirm";
+    el.innerHTML="<h4>For Myesha to confirm</h4><p>This copy is a draft. Nothing below has been "+
+      "verified, so please correct anything that is wrong before this page goes live.</p><ol>"+
+      CONFIG.confirmList.map(t=>"<li>"+t+"</li>").join("")+"</ol>";
+    const host=$("#v-about .about-below");
+    if(host) host.appendChild(el);
+  }
+})();
+
+/* ---------------- section tabs ---------------- */
+const VIEWS=[["nt-overview","v-overview","overview"],["nt-check","v-check","check"],
+  ["nt-coverage","v-coverage","coverage"],["nt-about","v-about","about"],["nt-contact","v-contact","contact"]];
+
+/* "legal" is reachable from the footer but is deliberately not a tab */
+const EXTRA_VIEWS=[["v-legal","legal"]];
+let CAMPAIGN_ON=false;
+function showView(key,{focus=false,push=true}={}){
+  /* on a single magnet landing page the only reachable views are the
+     worksheet itself and the disclosures page */
+  if(CAMPAIGN_ON && key!=="legal") key="check";
+  const extra=EXTRA_VIEWS.find(v=>v[1]===key);
+  const row=extra?null:(VIEWS.find(v=>v[2]===key)||VIEWS[0]);
+  const active=extra?extra[1]:row[2];
+  VIEWS.forEach(([t,p,k])=>{
+    const on=k===active;
+    $("#"+t).setAttribute("aria-selected",String(on));
+    $("#"+p).classList.toggle("on",on);
+  });
+  EXTRA_VIEWS.forEach(([p,k])=>$("#"+p).classList.toggle("on",k===active));
+  if(focus && row) $("#"+row[0]).focus();
+  if(push && location.hash.replace(/^#/,"")!==active){
+    history.replaceState(null,"","#"+active);
+  }
+  scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
+  recalcAll();
+}
+VIEWS.forEach(([t,,k],i)=>{
+  const el=$("#"+t);
+  el.addEventListener("click",()=>showView(k));
+  el.addEventListener("keydown",e=>{
+    const K=e.key;
+    if(!["ArrowRight","ArrowLeft","Home","End"].includes(K)) return;
+    e.preventDefault();
+    const n = K==="Home"?0 : K==="End"?VIEWS.length-1
+            : K==="ArrowRight"?(i+1)%VIEWS.length : (i-1+VIEWS.length)%VIEWS.length;
+    showView(VIEWS[n][2],{focus:true});
+  });
+});
+
+/* ---------------- worksheet tabs ---------------- */
+const WS=[["wt-income","w-income","income"],["wt-family","w-family","family"],["wt-ci","w-ci","ci"]];
+function showWorksheet(key,focus){
+  const row=WS.find(w=>w[2]===key)||WS[0];
+  WS.forEach(([t,p,k])=>{
+    const on=k===row[2];
+    $("#"+t).setAttribute("aria-selected",String(on));
+    $("#"+p).classList.toggle("on",on);
+  });
+  if(focus) $("#"+row[0]).focus();
+  recalcAll();
+}
+WS.forEach(([t,,k],i)=>{
+  const el=$("#"+t);
+  el.addEventListener("click",()=>showWorksheet(k));
+  el.addEventListener("keydown",e=>{
+    const K=e.key;
+    if(!["ArrowRight","ArrowLeft","Home","End"].includes(K)) return;
+    e.preventDefault();
+    const n = K==="Home"?0 : K==="End"?WS.length-1
+            : K==="ArrowRight"?(i+1)%WS.length : (i-1+WS.length)%WS.length;
+    showWorksheet(WS[n][2],true);
+  });
+});
+
+/* any control carrying data-go navigates; data-w also picks a worksheet */
+$$("[data-go]").forEach(el=>el.addEventListener("click",()=>{
+  if(el.dataset.w) showWorksheet(el.dataset.w);
+  showView(el.dataset.go);
+}));
+
+/* deep links: #check #coverage #about #contact, plus per worksheet */
+const HASH={overview:"overview",check:"check","gap-check":"check",coverage:"coverage",
+  products:"coverage",about:"about",contact:"contact",legal:"legal",disclosures:"legal"};
+const WHASH={income:"income",family:"family","critical-illness":"ci",critical:"ci",ci:"ci"};
+function fromHash(){
+  const k=decodeURIComponent(location.hash.replace(/^#/,"")).toLowerCase();
+  if(!k) return;
+  if(WHASH[k]){ showWorksheet(WHASH[k]); showView("check",{push:false}); return; }
+  if(HASH[k]) showView(HASH[k],{push:false});
+}
+addEventListener("hashchange",fromHash);
+
+/* ================================================================
+   WORKSHEET 01  Income Protection
+   essential monthly expenses = housing+transport+debt+essentials
+                              + childcare + other
+   savings runway (months)    = accessible savings / essential expenses
+   Existing coverage is never folded into the runway. It is flagged
+   for the conversation instead.
+   ================================================================ */
+const ROWS=[["#i-housing","Mortgage or rent"],["#i-transport","Car and transportation"],
+  ["#i-debt","Debt payments"],["#i-essentials","Groceries, utilities, essentials"],
+  ["#i-childcare","Childcare and dependants"],["#i-other","Other required costs"]];
+const COVER={
+  unsure:["warn","You are not sure whether you have income replacement coverage. That is the single most useful thing to pin down, and it is usually a ten minute check of your benefits booklet."],
+  "yes-known":["","You know what your existing coverage pays. Worth checking the waiting period and how long benefits last, because those two details decide whether the runway above is ever used."],
+  "yes-unknown":["warn","You have coverage but do not know what it pays. Waiting period, replacement percentage and benefit duration change this picture completely."],
+  no:["high","With no income replacement coverage, the runway above is the whole plan."]
+};
+function calcIncome(){
+  const rows=ROWS.map(([s,l])=>[l,num(s)]);
+  const ess=rows.reduce((a,[,v])=>a+v,0);
+  const sav=num("#i-savings"), inc=num("#i-income");
+  const run=ess>0?sav/ess:0;
+  $("#o-months").textContent = ess>0?run.toFixed(1):"0.0";
+  const cap=$("#o-caption");
+  if(ess<=0) cap.textContent="Enter your figures and this updates as you type.";
+  else if(sav<=0) cap.textContent="With no accessible savings entered, essential bills of "+money(ess)+" a month would have to be met from somewhere else starting in week one.";
+  else cap.textContent="Essential bills come to "+money(ess)+" a month. Your accessible savings of "+money(sav)+
+    " would cover about "+run.toFixed(1)+" months of them, running out partway through month "+(Math.floor(run)+1)+
+    ". What happens in month "+(Math.ceil(run)+1)+"?";
+  const tr=$("#o-track");
+  if(tr.children.length!==12){ tr.innerHTML="";
+    for(let i=0;i<12;i++){const c=document.createElement("div");c.className="runway-cell";
+      c.innerHTML='<i class="runway-fill"></i>';tr.appendChild(c);} }
+  Array.from(tr.children).forEach((c,i)=>{
+    const f=clamp(run-i,0,1)*100;
+    c.classList.toggle("dry",f===0);
+    $(".runway-fill",c).style.width=f+"%";
+  });
+  const led=$("#o-ledger"); led.innerHTML="";
+  rows.filter(([,v])=>v>0).forEach(([l,v])=>led.insertAdjacentHTML("beforeend","<tr><td>"+l+"</td><td>"+money(v)+"</td></tr>"));
+  if(ess>0){
+    led.insertAdjacentHTML("beforeend",'<tr class="tot"><td>Essential monthly expenses</td><td>'+money(ess)+"</td></tr>");
+    if(inc>0) led.insertAdjacentHTML("beforeend","<tr><td>Share of take home income committed</td><td>"+Math.round(ess/inc*100)+"%</td></tr>");
+  }
+  const st=val("#i-cover"), [tone,text]=COVER[st]||["",""];
+  $("#o-note").className="note"+(tone?" "+tone:"");
+  $("#o-note-t").innerHTML="<b>Existing coverage.</b> "+text+
+    (st==="no"?"":" Any existing coverage is deliberately left out of the runway above, because eligibility, waiting periods, tax treatment and benefit duration all vary.");
+  return {"Essential monthly expenses":money(ess),"Accessible emergency savings":money(sav),
+    "Estimated savings runway":ess>0?run.toFixed(1)+" months":"not calculated",
+    "Existing income replacement coverage":$("#i-cover").selectedOptions[0].textContent};
+}
+
+/* ================================================================
+   WORKSHEET 02  Family Protection Score
+   100 points over five weighted components. Household risk is folded
+   into the savings target rather than applied as a fudge factor.
+   ================================================================ */
+const MAX={savings:25,income:25,ci:20,life:15,know:15};
+function band(pct,unknown){
+  if(unknown) return ["unknown","Needs Review"];
+  if(pct>=.75) return ["low","Low Exposure"];
+  if(pct>=.40) return ["mod","Moderate Exposure"];
+  return ["high","High Exposure"];
+}
+function calcFamily(){
+  const sav=num("#s-savings"), fixed=num("#s-fixed");
+  const deps=parseInt(val("#s-deps"),10)||0, single=val("#s-earners")==="single";
+  const target=3+(deps>0?1:0)+(single?1:0);
+  const run=fixed>0?sav/fixed:0;
+  const pSav=fixed>0?clamp(run/target,0,1)*MAX.savings:0;
+  const pInc={"yes-known":25,"yes-unknown":15,unsure:6,no:0}[val("#s-income")]??0;
+  const pCI ={yes:20,unsure:6,no:0}[val("#s-ci")]??0;
+  const pLf ={yes:15,unsure:5,no:0}[val("#s-life")]??0;
+  const pKn ={exact:15,rough:9,none:12,unsure:3}[val("#s-know")]??0;
+  const total=Math.round(pSav+pInc+pCI+pLf+pKn);
+  $("#o-score").textContent=total;
+  const cats=[
+    {l:"Income Protection",p:pInc,m:MAX.income,u:val("#s-income")==="unsure"},
+    {l:"Critical Illness",p:pCI,m:MAX.ci,u:val("#s-ci")==="unsure"},
+    {l:"Emergency Savings",p:pSav,m:MAX.savings,u:fixed<=0},
+    {l:"Life Protection",p:pLf,m:MAX.life,u:val("#s-life")==="unsure"},
+    {l:"Coverage Knowledge",p:pKn,m:MAX.know,u:val("#s-know")==="unsure"}];
+  const mt=$("#o-meter"); mt.innerHTML="";
+  cats.forEach(c=>{
+    const pct=c.m?c.p/c.m:0, [k,lab]=band(pct,c.u);
+    const r=document.createElement("div"); r.className="meter-row";
+    r.innerHTML="<div><label>"+c.l+'</label><div class="meter-bar"><i class="b-'+k+
+      '" style="width:'+(c.u?100:Math.round(pct*100))+'%"></i></div></div>'+
+      '<span class="tag" data-b="'+k+'">'+lab+"</span>";
+    mt.appendChild(r);
+  });
+  const cap=$("#o-score-cap");
+  if(fixed<=0) cap.textContent="Add your monthly fixed obligations so the savings part of the score can be worked out.";
+  else if(total>=75) cap.textContent="The basics look reasonably well covered. Worth confirming the detail, particularly waiting periods and how long any benefit would last.";
+  else if(total>=50) cap.textContent="There are real gaps here, and at least one is probably easy to close. Your savings cover about "+run.toFixed(1)+" months of fixed obligations against a target of "+target+".";
+  else cap.textContent="This household carries a lot of exposure. Your savings cover about "+run.toFixed(1)+" months of fixed obligations against a target of "+target+" for a household like yours.";
+  const unk=cats.filter(c=>c.u).length;
+  $("#o-score-note").className="note"+(unk>=2?" warn":"");
+  $("#o-score-note-t").innerHTML=(unk>=2
+    ? "<b>"+unk+" areas came back as not sure.</b> Those are not necessarily gaps, they are unknowns, and unknowns are the cheapest thing to fix. "
+    : "")+"This score is an educational indicator only. It is not a statement of insurability and not a formal financial needs analysis.";
+  const out={"Family protection score":total+" / 100"};
+  cats.forEach(c=>out[c.l]=band(c.m?c.p/c.m:0,c.u)[1]);
+  out.Dependants=$("#s-deps").selectedOptions[0].textContent;
+  out.Household=single?"Single income":"Dual income";
+  return out;
+}
+
+/* ================================================================
+   WORKSHEET 03  Critical Illness Financial Impact
+   period cost = (essentials + extra childcare + recovery) x months
+   resources   = savings + (known employer benefit + partner) x months
+   gap         = max(0, period cost - resources)
+   ================================================================ */
+function calcCI(){
+  const m=parseInt(val("#c-months"),10)||6;
+  const ess=num("#c-essentials"), kids=num("#c-childcare"), rec=num("#c-recovery");
+  const sav=num("#c-savings"), sp=num("#c-spouse");
+  const st=val("#c-benefit-known");
+  $("#c-benefit-row").hidden = st!=="known";
+  const ben = st==="known"?num("#c-benefit"):0;
+  const monthly=ess+kids+rec, cost=monthly*m, res=sav+(ben+sp)*m;
+  const gap=Math.max(0,cost-res);
+  $("#o-gap").textContent=money(gap);
+  const cap=$("#o-gap-cap");
+  if(monthly<=0) cap.textContent="Enter your monthly essential expenses to model the scenario.";
+  else if(gap===0) cap.textContent="Over "+m+" months, what you listed would cover the costs you listed. Worth pressure testing whether those resources would really all be available, and for the full period.";
+  else cap.textContent="Over "+m+" months away from work, this household would be short about "+money(gap)+" on the figures you entered.";
+  const led=$("#o-ci-ledger"); led.innerHTML="";
+  const row=(l,v)=>led.insertAdjacentHTML("beforeend","<tr><td>"+l+"</td><td>"+v+"</td></tr>");
+  if(monthly>0){
+    row("Essential household expenses",money(ess)+" x "+m);
+    if(kids>0) row("Extra childcare and dependants",money(kids)+" x "+m);
+    if(rec>0)  row("Other recovery related costs",money(rec)+" x "+m);
+    led.insertAdjacentHTML("beforeend",'<tr class="tot"><td>Cost over '+m+" months</td><td>"+money(cost)+"</td></tr>");
+    if(sav>0) row("Accessible savings",money(sav));
+    if(ben>0) row("Employer benefit",money(ben)+" x "+m);
+    if(sp>0)  row("Partner income toward essentials",money(sp)+" x "+m);
+    led.insertAdjacentHTML("beforeend",'<tr class="tot"><td>Resources you listed</td><td>'+money(res)+"</td></tr>");
+    led.insertAdjacentHTML("beforeend",'<tr class="tot"><td>Illustrative gap</td><td>'+money(gap)+"</td></tr>");
+  }
+  const unsure=st==="unsure";
+  $("#o-ci-note").className="note"+(unsure?" warn":"");
+  $("#o-ci-note-t").innerHTML=(unsure
+    ? "<b>Your employer benefit counts as zero here</b> because you are not sure what it pays. That is deliberate. Guessing would make this number look better than it is, and finding the real figure is the first thing to do. "
+    : "")+
+    "An illustrative gap is not a recommended amount of insurance. For context only: Combined Insurance's Canadian critical illness products pay a lump sum on diagnosis of a covered condition, with protection ranging from $10,000 to $100,000 depending on product, plan type and eligibility. Whether any of that suits your situation is a conversation, not a calculation.";
+  return {Scenario:m+" months away from work","Essential household costs over the period":money(cost),
+    "Resources listed":money(res),"Illustrative gap":money(gap),
+    "Employer benefit": st==="known"?money(ben)+" per month": st==="none"?"None":"Not sure, counted as zero"};
+}
+
+/* ---------------- forms ---------------- */
+const CONSENT="I agree that "+CONFIG.name+" may contact me by phone, text message and email about my result "+
+  "and my insurance needs. I understand I can withdraw this consent at any time.";
+
+function formHTML(src,id,message){
+  return '<form class="lead" data-src="'+src+'" novalidate><div class="cap-grid">'+
+    '<div><label class="lbl" for="n-'+id+'">Name</label><input type="text" id="n-'+id+'" name="name" autocomplete="name" required></div>'+
+    '<div><label class="lbl" for="e-'+id+'">Email</label><input type="email" id="e-'+id+'" name="email" autocomplete="email" required></div>'+
+    '<div><label class="lbl" for="p-'+id+'">Phone</label><input type="tel" id="p-'+id+'" name="phone" autocomplete="tel" required></div>'+
+    '<div><label class="lbl" for="c-'+id+'">City and province</label><input type="text" id="c-'+id+'" name="location" autocomplete="address-level2" required></div>'+
+    (message?'<div class="span2" style="grid-column:1/-1"><label class="lbl" for="m-'+id+'">Message</label>'+
+      '<textarea id="m-'+id+'" name="message" required></textarea></div>':'')+
+    '</div><label class="consent"><input type="checkbox" name="consent" required><span>'+CONSENT+'</span></label>'+
+    '<button class="btn btn-primary" type="submit">'+(message?"Send my message":"Send my result to Myesha")+'</button>'+
+    '<p class="status" role="status"></p>'+
+    '<p class="micro">'+(message?"Nothing is sent until you press this button."
+      :"Your result is only sent when you press this button. Nothing you typed leaves your browser before that.")+'</p></form>';
+}
+$$("[data-src]").forEach(box=>{
+  const src=box.dataset.src;
+  $(".cf",box).innerHTML=formHTML(src,src.toLowerCase().replace(/[^a-z]+/g,"-"),false);
+});
+$("#enqSlot").innerHTML=formHTML("General enquiry","enquiry",true);
+
+const CALC={"Income Protection Calculator":calcIncome,"Family Protection Score":calcFamily,
+  "Critical Illness Financial Impact":calcCI};
+
+$$(".lead").forEach(form=>{
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const st=$(".status",form), btn=$("button[type=submit]",form);
+    st.className="status show";
+    if(!form.checkValidity()){
+      st.classList.add("err");
+      st.textContent="Please complete every field and tick the consent box so I am allowed to contact you.";
+      form.reportValidity(); return;
+    }
+    const src=form.dataset.src;
+    const payload={source:src,name:form.name.value.trim(),email:form.email.value.trim(),
+      phone:form.phone.value.trim(),location:form.location.value.trim(),consent:true,
+      consentText:CONSENT,consentAt:new Date().toISOString()};
+    if(form.message) payload.message=form.message.value.trim();
+    if(CALC[src]) payload.result=CALC[src]();
+
+    if(!CONFIG.formEndpoint){
+      st.classList.add("err");
+      st.textContent="This form is not connected to a mailbox yet, so nothing was sent. Add a form endpoint to the CONFIG block at the top of this page, or contact Myesha directly using the details on this page.";
+      console.warn("Lead not sent, CONFIG.formEndpoint is empty. Payload:",payload); return;
+    }
+    btn.disabled=true; st.classList.remove("err","ok"); st.textContent="Sending...";
+    try{
+      const r=await fetch(CONFIG.formEndpoint,{method:"POST",
+        headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)});
+      if(!r.ok) throw new Error("Status "+r.status);
+      st.classList.add("ok");
+      st.textContent="Sent. I will be in touch shortly, and I will have your details in front of me when I call.";
+      form.reset();
+    }catch(err){
+      btn.disabled=false; st.classList.add("err");
+      st.textContent="That did not go through. Please try again, or contact me directly using the details on this page.";
+      console.error(err);
+    }
+  });
+});
+
+/* ---------------- live recalculation ---------------- */
+function recalcAll(){ calcIncome(); calcFamily(); calcCI(); }
+["#f-income","#f-family","#f-ci"].forEach(s=>{
+  const f=$(s); f.addEventListener("input",recalcAll); f.addEventListener("change",recalcAll);
+});
+recalcAll();
+
+/* ---------------- campaign mode ---------------- */
+/* On the hosted site each magnet has its own path, rewritten to this same
+   document, so the path selects the campaign when CONFIG.campaign is null. */
+const PATH_CAMPAIGN={"/income":"income","/family":"family","/critical-illness":"ci"};
+const CAMPAIGN_TITLE={income:"Income Protection Calculator | Myesha Barnes",
+  family:"Family Protection Score | Myesha Barnes",
+  ci:"Critical Illness Financial Impact | Myesha Barnes"};
+
+function applyCampaign(){
+  let key=CONFIG.campaign;
+  if(!key){
+    const path=location.pathname.replace(/\/+$/,"")||"/";
+    key=PATH_CAMPAIGN[path]||null;
+  }
+  const c=CAMPAIGNS[key];
+  if(!c) return false;
+  if(CAMPAIGN_TITLE[key]) document.title=CAMPAIGN_TITLE[key];
+  CONFIG.campaign=key;
+  CAMPAIGN_ON=true;
+  document.body.classList.add("campaign");
+
+  // the wordmark links to the full site when there is one, otherwise it is not a control
+  const brand=$(".brand");
+  if(CONFIG.siteUrl){
+    const a=document.createElement("a");
+    a.className="brand"; a.href=CONFIG.siteUrl;
+    // only leave the tab for an off site destination
+    if(/^https?:/i.test(CONFIG.siteUrl)){ a.target="_blank"; a.rel="noopener"; }
+    a.innerHTML=brand.innerHTML; a.setAttribute("aria-label","Myesha Barnes, visit the full site");
+    brand.replaceWith(a);
+  } else {
+    // no site to go to, so it should not look or behave like a control
+    const d=document.createElement("div");
+    d.className="brand"; d.innerHTML=brand.innerHTML;
+    brand.replaceWith(d);
+  }
+
+  const back=$('#v-legal [data-go="overview"]');
+  if(back) back.textContent="Back to the calculator";
+
+  // one worksheet, and no tab row to leave it by
+  showWorksheet(c.key);
+  showView("check",{push:false});
+
+  // the section heading becomes the ad's landing headline
+  const head=$("#v-check .sec-head");
+  head.className="camp-hero";
+  head.innerHTML=
+    '<div><p class="eyebrow">'+c.eyebrow+'</p><h1>'+c.h1+'</h1>'+
+    '<p class="sub">'+c.sub+'</p><ul class="camp-pts">'+
+    c.pts.map(p=>'<li><span class="tick" aria-hidden="true">&#10003;</span><span>'+p+'</span></li>').join('')+
+    '</ul><div class="carrier" style="margin-top:28px">'+$("#v-overview .carrier").innerHTML+'</div>'+
+    '</div><figure style="margin:0"><img src="'+$("#v-overview .hero-fig img").src+
+    '" alt="Myesha Barnes, supplemental insurance representative" width="900" height="1201"></figure>';
+
+  // a short who-I-am under the worksheet, so the page can stand alone
+  const about=document.createElement("div");
+  about.className="camp-about";
+  about.innerHTML='<img src="'+$("#v-overview .hero-fig img").src+'" alt="">'+
+    '<div><h3>Who you would be talking to</h3><p>I am Myesha Barnes, a licensed supplemental insurance '+
+    'representative with Combined Insurance. I do not open with whether you want insurance. I open with what '+
+    'would actually happen if your income stopped. If your current coverage already handles it, that is the '+
+    'answer and there is nothing to buy.</p></div>';
+  $("#v-check .wrap").appendChild(about);
+
+  // the header action calls her instead of pointing at a tab that no longer exists
+  const btn=$('.hdr .btn[data-go="contact"]');
+  if(btn && CONFIG.phone){
+    const a=document.createElement("a");
+    a.className="btn btn-primary"; a.href=telHref(CONFIG.phone); a.textContent="Call "+CONFIG.phone;
+    btn.replaceWith(a);
+  }
+  return true;
+}
+
+/* deferred until the calculators above exist */
+if(!applyCampaign()) fromHash();
+</script>
+
+</body>
+</html>
