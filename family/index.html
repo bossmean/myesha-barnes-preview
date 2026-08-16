@@ -419,33 +419,56 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal-br);background:v
 .fine{margin-top:32px;font-size:13px;line-height:1.65;color:var(--ink-3);max-width:96ch}
 
 /* ---------------- about ---------------- */
-.about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:60px;align-items:start}
-@media (max-width:900px){.about{grid-template-columns:1fr;gap:40px}}
-.about-lede{font-family:var(--display);font-size:22px;line-height:1.46;color:var(--ink);margin:16px 0 20px}
-.about p{color:var(--ink-2);margin:0 0 17px;max-width:58ch;font-weight:400;font-size:16.5px}
-.about p strong{font-weight:700;color:var(--ink)}
-.about-fig{margin:0 0 20px;max-width:280px}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 20px;
-  padding:22px 0;border-bottom:1px solid var(--rule)}
-.steps li:first-child{border-top:1px solid var(--rule)}
+.ab-hero{display:grid;grid-template-columns:320px minmax(0,1fr);gap:60px;align-items:center}
+@media (max-width:820px){.ab-hero{grid-template-columns:1fr;gap:26px}}
+.ab-fig{margin:0}
+.ab-fig img{width:100%;max-width:320px}
+@media (max-width:820px){.ab-fig img{max-width:230px}}
+.ab-lede{font-family:var(--display);font-size:clamp(20px,2.2vw,27px);line-height:1.42;
+  color:var(--ink);margin:14px 0 0;max-width:42ch}
+@media (max-width:820px){.ab-lede{max-width:none}}
+
+.ab-body{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;
+  align-items:start;margin:52px 0 0}
+@media (max-width:900px){.ab-body{grid-template-columns:1fr;gap:32px}}
+.ab-copy{max-width:66ch}
+.ab-copy p{font-size:16.5px;line-height:1.68;color:var(--ink-2);margin:0 0 18px}
+.ab-copy p:last-child{margin-bottom:0}
+.ab-copy strong{font-weight:700;color:var(--ink)}
+
+.ab-process{margin-top:56px;padding-top:44px;border-top:1px solid var(--rule)}
+.steps{list-style:none;margin:26px 0 0;padding:0;counter-reset:s;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:0 52px}
+@media (max-width:760px){.steps{grid-template-columns:1fr;gap:0}}
+.steps li{counter-increment:s;display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:4px 18px;padding:20px 0;border-top:1px solid var(--rule)}
 .steps li::before{content:counter(s,decimal-leading-zero);grid-row:span 2;font-size:10.5px;
   font-weight:700;letter-spacing:.1em;color:var(--teal-ink);padding-top:6px}
-.steps b{grid-column:2;font-family:var(--display);font-size:19px;font-weight:400;display:block}
-.steps span{grid-column:2;font-size:14.5px;line-height:1.6;color:var(--ink-2);font-weight:400}
+.steps b{grid-column:2;font-family:var(--display);font-size:18.5px;font-weight:400;display:block}
+.steps span{grid-column:2;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.ab-cta{margin-top:34px}
+.about-below:empty{display:none}
 
-.about-below{margin-top:52px;padding-top:8px}
-.about-below .facts{margin-top:0}
 /* about: qualitative facts only, no invented numbers */
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;
-  background:var(--rule);border:1px solid var(--rule);border-radius:5px;overflow:hidden;margin-top:32px}
-.facts div{background:var(--white);padding:18px 18px 16px}
-.facts b{display:block;font-family:var(--display);font-size:19px;color:var(--navy);line-height:1.2}
-.facts span{display:block;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--ink-3);margin-top:6px}
+.facts{display:flex;flex-direction:column;background:var(--white);
+  border:1px solid var(--rule);border-radius:5px;overflow:hidden;position:sticky;top:150px}
+.facts div{padding:18px 20px}
+.facts div+div{border-top:1px solid var(--rule)}
+.facts span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+.facts b{display:block;font-family:var(--display);font-size:18px;color:var(--navy);line-height:1.28}
+@media (max-width:900px){
+  .facts{position:static;flex-direction:row;flex-wrap:wrap}
+  .facts div{flex:1 1 200px}
+  .facts div+div{border-top:0;border-left:1px solid var(--rule)}
+}
+@media (max-width:560px){
+  .facts{flex-direction:column}
+  .facts div+div{border-left:0;border-top:1px solid var(--rule)}
+}
 
 /* preview only: what the client still has to confirm */
-.confirm{margin-top:28px;max-width:96ch;border:1px dashed var(--rule);border-left:3px solid var(--amber);
+.confirm{margin-top:48px;max-width:96ch;border:1px dashed var(--rule);border-left:3px solid var(--amber);
   border-radius:4px;padding:22px 24px;background:var(--tint)}
 .confirm h4{font-family:var(--text);font-size:10.5px;font-weight:700;letter-spacing:.15em;
   text-transform:uppercase;color:var(--amber-ink);margin:0 0 6px}
@@ -797,45 +820,54 @@ footer{background:var(--white);border-top:1px solid var(--rule);padding:26px 0 3
 <!-- ================= ABOUT ================= -->
 <div class="view" id="v-about" role="tabpanel" aria-labelledby="nt-about">
   <div class="wrap pad">
-    <div class="about">
+
+    <!-- portrait and opening statement, balanced side by side -->
+    <div class="ab-hero">
+      <figure class="ab-fig"><img id="aboutPortrait" src="" alt="Myesha Barnes" width="900" height="1201"></figure>
       <div>
-        <figure class="about-fig"><img id="aboutPortrait" src="" alt="Myesha Barnes" width="900" height="1201"></figure>
         <p class="eyebrow">About Myesha</p>
-        <p class="about-lede">I have spent more than ten years in supplemental insurance, and I still
+        <p class="ab-lede">I have spent more than ten years in supplemental insurance, and I still
           open every conversation the same way. Not with whether you want coverage. With what would
           actually happen to your household if your income stopped for six months.</p>
-        <p>In that time I have had that conversation with a lot of people, and the pattern rarely
-          changes. Most have a rough answer and an uncomfortable feeling. Very few have a number.
-          The moment we work the number out together, the conversation changes, because you can
-          finally see the shape of the thing you have been avoiding.</p>
-        <p>The people I work with are usually not shopping for insurance when we meet. They are
-          working, raising families, paying down a mortgage, and quietly assuming that if something
-          went wrong they would find a way through. Sometimes that is true. More often there is a
-          gap between what they believe their coverage does and what it actually pays, and nobody
-          has ever walked them through it.</p>
-        <p>What ten years teaches you is that the details decide everything. Not the policy name,
-          but the waiting period, how long a benefit actually lasts, whether it follows you if you
-          change jobs, and what is quietly excluded. That is the part I am useful for.</p>
-        <p>Sometimes the honest answer is that you are <strong>already fine</strong>, and I will say
-          so. Where there is a real gap, I will show you what Combined Insurance offers, what it
-          costs, and exactly what it does and does not do. No manufactured urgency, and no
-          recommendation I could not defend to your family.</p>
+      </div>
+    </div>
 
+    <!-- the prose runs in one readable measure instead of a narrow half column -->
+    <div class="ab-body">
+      <div class="ab-copy">
+      <p>In that time I have had that conversation with a lot of people, and the pattern rarely
+        changes. Most have a rough answer and an uncomfortable feeling. Very few have a number.
+        The moment we work the number out together, the conversation changes, because you can
+        finally see the shape of the thing you have been avoiding.</p>
+      <p>The people I work with are usually not shopping for insurance when we meet. They are
+        working, raising families, paying down a mortgage, and quietly assuming that if something
+        went wrong they would find a way through. Sometimes that is true. More often there is a
+        gap between what they believe their coverage does and what it actually pays, and nobody
+        has ever walked them through it.</p>
+      <p>What ten years teaches you is that the details decide everything. Not the policy name,
+        but the waiting period, how long a benefit actually lasts, whether it follows you if you
+        change jobs, and what is quietly excluded. That is the part I am useful for.</p>
+      <p>Sometimes the honest answer is that you are <strong>already fine</strong>, and I will say
+        so. Where there is a real gap, I will show you what Combined Insurance offers, what it
+        costs, and exactly what it does and does not do. No manufactured urgency, and no
+        recommendation I could not defend to your family.</p>
       </div>
-      <div>
-        <p class="eyebrow" style="margin-bottom:18px">What happens after you send a worksheet</p>
-        <ol class="steps">
-          <li><b>You get your result first</b><span>The number appears while you fill the worksheet in. You never hand over details to see it.</span></li>
-          <li><b>I read it before I call</b><span>Your result and context arrive together, so the call starts where your worksheet left off.</span></li>
-          <li><b>A short call, at a time you pick</b><span>Usually fifteen minutes. We go through your existing coverage first, including anything through work.</span></li>
-          <li><b>Options only where a gap is real</b><span>If your current coverage already handles it, that is the answer and there is nothing to buy.</span></li>
-        </ol>
-        <div style="margin-top:32px"><button class="btn btn-primary" type="button" data-go="check" data-w="income">Start a worksheet</button></div>
-      </div>
+      <aside class="facts" id="aboutFacts"></aside>
     </div>
-    <div class="about-below">
-      <div class="facts" id="aboutFacts"></div>
+
+    <!-- process, full width, two by two -->
+    <div class="ab-process">
+      <p class="eyebrow">What happens after you send a worksheet</p>
+      <ol class="steps">
+        <li><b>You get your result first</b><span>The number appears while you fill the worksheet in. You never hand over details to see it.</span></li>
+        <li><b>I read it before I call</b><span>Your result and context arrive together, so the call starts where your worksheet left off.</span></li>
+        <li><b>A short call, at a time you pick</b><span>Usually fifteen minutes. We go through your existing coverage first, including anything through work.</span></li>
+        <li><b>Options only where a gap is real</b><span>If your current coverage already handles it, that is the answer and there is nothing to buy.</span></li>
+      </ol>
+      <div class="ab-cta"><button class="btn btn-primary" type="button" data-go="check" data-w="income">Start a worksheet</button></div>
     </div>
+
+    <div class="about-below"></div>
   </div>
 </div>
 
@@ -1048,7 +1080,7 @@ $("#credLine").textContent = CONFIG.credential;
     ["Accident, illness, disability, life", "What I can review"]
   ];
   const box=$("#aboutFacts");
-  if(box) box.innerHTML=facts.map(([b,k])=>"<div><b>"+b+"</b><span>"+k+"</span></div>").join("");
+  if(box) box.innerHTML=facts.map(([b,k])=>"<div><span>"+k+"</span><b>"+b+"</b></div>").join("");
 
   // preview only, disappears with CONFIG.previewNotice
   if(CONFIG.previewNotice && Array.isArray(CONFIG.confirmList) && CONFIG.confirmList.length){
